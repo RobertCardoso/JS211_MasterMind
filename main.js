@@ -28,13 +28,59 @@ const getRandomInt = (min, max) => {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
-const generateHint = () =>  {
+const generateHint = (guess) =>  {
   // your code here
+  let solutionArray = solution.split("");
+  let guessArray = guess.split("");
+  let correctLetterLocations = 0;
+  let correctLetters = 0;
+  
+  for (let i = 0; i < solutionArray.length; i++){
+    if (solutionArray[i] === guessArray[i]){
+      correctLetterLocations++;
+      solutionArray[i] = null;
+    }
+  }
+
+  for (let i = 0; i < solutionArray.length; i++) {
+     let targetIndex = solutionArray.indexOf(guessArray[i])
+     if (targetIndex > -1){
+      correctLetters++
+      solutionArray[targetIndex] = null;
+     }
+
+  }
+  let hint = correctLetterLocations.toString() + "-" + correctLetters.toString();
+  return hint;
+
+  
 }
 
-const mastermind = (guess) => {
+const mastermind = (guess , solution) => {
   solution = 'abcd'; // Comment this out to generate a random solution
   // your code here
+
+  if (guess == solution){ 
+    board = []
+    console.log("you won")
+    return "You guessed it!";
+   
+  } else {
+    let hint = generateHint(guess)
+    board.push(guess + " " + hint)
+    
+    if (board.length > 10) {
+       console.log("no more guesses")
+       return "You ran out of turns! The solution was " + solution  
+    } else {
+      console.log("play again")
+      return "Guess Again"
+    }
+  }
+
+
+
+
 }
 
 
