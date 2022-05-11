@@ -27,7 +27,11 @@ const generateSolution = () =>  {
 const getRandomInt = (min, max) => {
   return Math.floor(Math.random() * (max - min)) + min;
 }
-
+/**
+ * 
+ * @param {string} guess 4 letters in a string 
+ * @returns correctLetterLocation - correctletter... 
+ */
 const generateHint = (guess) =>  {
   // your code here
   let solutionArray = solution.split("");
